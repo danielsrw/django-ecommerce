@@ -32,13 +32,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'jazzmin',
     'base',
     'userauths',
 ]
@@ -140,6 +140,7 @@ JAZZMIN_SETTINGS = {
     'site_brand': 'Learn',
     'site_logo': 'images/logo/logo.svg',
     'copyright': 'Developed by NEXCODE',
+    'search_model': 'auth.User',
 }
 
 AUTH_USER_MODEL = 'userauths.CustomUser'
