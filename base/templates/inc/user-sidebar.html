@@ -1,0 +1,32 @@
+{% load static %}
+
+<div class="col-lg-3 col-md-4 col-12">
+    <!-- Start Dashboard Sidebar -->
+    <div class="dashboard-sidebar">
+        <div class="user-image">
+            <img src="{% static 'images/dashboard/user-image.jpg' %}" alt="#">
+            <h3>Steve Aldridge
+                <span><a href="javascript:void(0)">@username</a></span>
+            </h3>
+        </div>
+        <div class="dashboard-menu">
+            <ul>
+                <li>
+                    <a class="" href="{% url 'userDashboard' %}">
+                        <i class="lni lni-dashboard"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'userEditProfile' %}">
+                        <i class="lni lni-dashboard"></i>
+                        Edit Profile
+                    </a>
+                </li>
+            </ul>
+            <div class="button">
+                <a class="btn" href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
