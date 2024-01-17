@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -12,10 +12,11 @@ urlpatterns = [
     path('blog/', views.blog, name = 'blog'),
     path('blog/single', views.showBlog, name = 'showBlog'),
     path('contact/', views.contact, name = 'contact'),
-    path('register/', views.register, name = 'register'),
     path('dashboard/', views.userDashboard, name = 'userDashboard'),
     path('profile-edit/', views.userEditProfile, name = 'userEditProfile'),
     path('terms-and-conditions/', views.termsAndConditions, name = 'termsAndConditions'),
+
+    path('user/', include('userauths.urls')),
 ]
 
 if settings.DEBUG:

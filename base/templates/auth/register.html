@@ -26,39 +26,28 @@
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
                     <div class="form-head">
                         <h4 class="title">Registration</h4>
+                        {% if form.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ form.errors }}
+                            </div>
+                        {% endif %}
                         <form method="post">
                             {% csrf_token %}
-                            
-                            <div class="socila-login">
-                                <ul>
-                                    <li><a href="#" class="facebook"><i class="lni lni-facebook-original"></i>
-                                        Import From Facebook
-                                        </a>
-                                    </li>
-                                    <li><a href="#" class="google"><i class="lni lni-google"></i>
-                                        Import From Google Plus
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="alt-option">
-                                <span>Or</span>
-                            </div>
                             <div class="form-group">
-                                <label>Name</label>
-                                <input name="password" type="text" name="username">
+                                <label>Username</label>
+                                {{ form.username }}
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input name="email" type="email" name="email">
+                                {{ form.email }}
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input name="password" type="password" name="password1">
+                                {{ form.password1 }}
                             </div>
                             <div class="form-group">
                                 <label>Confirm Password</label>
-                                <input name="password" type="password" name="password2">
+                                {{ form.password2 }}
                             </div>
                             <div class="check-and-pass">
                                 <div class="row align-items-center">
@@ -76,7 +65,8 @@
                             <div class="button">
                                 <button type="submit" class="btn">Registration</button>
                             </div>
-                            <p class="outer-link">Already have an account? <a href="login.html"> Login Now</a>
+                            <p class="outer-link">
+                                Already have an account? <a href="user/login"> Login Now</a>
                             </p>
                         </form>
                     </div>

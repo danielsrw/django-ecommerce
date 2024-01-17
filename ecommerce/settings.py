@@ -140,7 +140,7 @@ JAZZMIN_SETTINGS = {
     'site_brand': 'Learn',
     'site_logo': 'images/logo/logo.svg',
     'copyright': 'Developed by NEXCODE',
-    'search_model': 'auth.User',
+    'search_model': 'auth.CustomUser',
 }
 
 AUTH_USER_MODEL = 'userauths.CustomUser'

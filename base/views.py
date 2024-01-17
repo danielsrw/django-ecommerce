@@ -24,9 +24,6 @@ def showBlog(request):
 def contact(request):
 	return render(request, 'contact.html')
 
-def register(request):
-    return render(request, 'registration/register.html')
-
 def userDashboard(request):
 	return render(request, 'profile/dashboard.html')
 
