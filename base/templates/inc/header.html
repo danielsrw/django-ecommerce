@@ -40,16 +40,22 @@
                         </div> <!-- navbar collapse -->
                         <div class="login-button">
                             <ul>
-                                <li>
-                                    <a href="user/login"><i class="lni lni-enter"></i> Login</a>
-                                </li>
-                                <li>
-                                    <a href="user/register"><i class="lni lni-user"></i> Register</a>
-                                </li>
+                                {% if user.is_authenticated %}
+                                    <li class="button header-button">
+                                        <a href="{% url 'userDashboard' %}" class="btn button header-button text-white">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'userauths:logout' %}"><i class="lni lni-exit"></i> Logout</a>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a href="{% url 'userauths:login' %}"><i class="lni lni-enter"></i> Login</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'userauths:register' %}"><i class="lni lni-user"></i> Register</a>
+                                    </li>
+                                {% endif %}
                             </ul>
-                        </div>
-                        <div class="button header-button">
-                            <a href="{% url 'userDashboard' %}" class="btn">Profile</a>
                         </div>
                     </nav> <!-- navbar -->
                 </div>

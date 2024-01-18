@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from userauths.forms import UserRegisterForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.conf import settings
 
@@ -18,7 +18,8 @@ def register(request):
             
             if user is not None:
                 login(request, user)
-                return redirect('base.home')
+                return render('index.html')
+
     else:
         form = UserRegisterForm()
 
@@ -30,7 +31,8 @@ def register(request):
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('/')
+        messages.warning(request, f"Hey, You're already logged in")
+        return render('index.html')
 
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -47,7 +49,7 @@ def login(request):
             login(request, user)
             messages.success(request, "You're now logged in")
 
-            return redirect('/')
+            return render('index.html')
         else:
             messages.warning(request, "User doesn't exist, Create an account")
 
@@ -56,3 +58,8 @@ def login(request):
     }
 
     return render(request, "auth/login.html", context)
+
+def user_logout(request):
+    logout(request)
+    messages.success(request, "You're logged out")
+    return redirect("userauths:login")
