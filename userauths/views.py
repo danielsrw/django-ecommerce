@@ -3,10 +3,11 @@ from userauths.forms import UserRegisterForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.conf import settings
+from userauths.models import CustomUser
 
-User = settings.AUTH_USER_MODEL
+# User = settings.AUTH_USER_MODEL
 
-def register(request):
+def user_register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST or None)
         if form.is_valid():
@@ -18,7 +19,7 @@ def register(request):
             
             if user is not None:
                 login(request, user)
-                return render('index.html')
+                return redirect('/')
 
     else:
         form = UserRegisterForm()
@@ -29,35 +30,26 @@ def register(request):
 
     return render(request, 'auth/register.html', context)
 
-def login(request):
+def user_login(request):
     if request.user.is_authenticated:
-        messages.warning(request, f"Hey, You're already logged in")
-        return render('index.html')
+        messages.warning(request, "Hey, You're already logged in")
+        return redirect('/')
 
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
 
-        try:
-            user = User.objects.get(email=email)
-        except:
-            messages.warning(request, f"User with {email} does not exists")
-
+        # Use authenticate with email field
         user = authenticate(request, email=email, password=password)
 
         if user is not None:
             login(request, user)
             messages.success(request, "You're now logged in")
-
-            return render('index.html')
+            return redirect('/')
         else:
-            messages.warning(request, "User doesn't exist, Create an account")
+            messages.warning(request, "Invalid email or password. Create an account if you don't have one.")
 
-    context = {
-
-    }
-
-    return render(request, "auth/login.html", context)
+    return render(request, "auth/login.html")
 
 def user_logout(request):
     logout(request)

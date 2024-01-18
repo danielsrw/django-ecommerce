@@ -1931,7 +1931,7 @@ ol {
     Hero Area CSS
 ========================================*/
 .hero-area {
-  background-image: url("../images/hero/hero-bg.jpg");
+/*  background-image: url("../images/hero/hero-bg.jpg");*/
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -6693,7 +6693,7 @@ blockquote .shape {
     Call Action CSS
 ========================================*/
 .call-action {
-  background-image: url("../images/call-action/cat-bg.jpg");
+/*  background-image: url("../images/call-action/cat-bg.jpg");*/
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
