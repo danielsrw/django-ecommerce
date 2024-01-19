@@ -52,7 +52,14 @@ class Category(models.Model):
         return self.title
 
 class Tag(models.Model):
-	pass
+    tid = ShortUUIDField(unique=True, max_length=20)
+    title = models.CharField(max_length=100, default="Tag Name")
+
+    class Meta:
+        verbose_name_plural = "Tags"
+
+    def __str__(self):
+        return self.title
 
 class Vendor(models.Model):
 	vid = ShortUUIDField(unique=True, max_length=20)
@@ -85,7 +92,8 @@ class Product(models.Model):
 
 	user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
 	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-	tags = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
+	tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
+	vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
 	
 	title = models.CharField(max_length=100, default="Product Title")
 	image = models.ImageField(upload_to=use_directory_path, default="product.jpg")

@@ -6,10 +6,13 @@ class ProductImagesAdmin(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
 	inlines = [ProductImagesAdmin]
-	list_display = ['user', 'product_image', 'price', 'featured', 'product_status']
+	list_display = ['user', 'title', 'product_image', 'price', 'featured', 'product_status']
 
 class CategoryAdmin(admin.ModelAdmin):
 	list_display = ['title', 'category_image']
+
+class TagAdmin(admin.ModelAdmin):
+	list_display = ['title']
 
 class VendorAdmin(admin.ModelAdmin):
 	list_display = ['title', 'vendor_image']
@@ -31,6 +34,7 @@ class AddressAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Tag, TagAdmin)
 admin.site.register(Vendor, VendorAdmin)
 admin.site.register(CartOrder, CartOrderAdmin)
 admin.site.register(CartOrderItems, CartOrderItemsAdmin)

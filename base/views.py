@@ -1,13 +1,28 @@
 from django.shortcuts import render
+from base.models import Category, Product
 
 def home(request):
-	return render(request, 'index.html')
+	categories = Category.objects.all()
+	products = Product.objects.filter(product_status="published", featured=True)
+
+	context = {
+		'categories': categories,
+		'products': products
+	}
+
+	return render(request, 'index.html', context)
 
 def about(request):
 	return render(request, 'about.html')
 
 def shop(request):
-	return render(request, 'shop.html')
+	products = Product.objects.order_by("-id")
+
+	context = {
+		'products': products
+	}
+
+	return render(request, 'shop.html', context)
 
 def product(request):
 	return render(request, 'product.html')

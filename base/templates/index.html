@@ -11,15 +11,15 @@
                 <div class="row">
                     <div class="col-12 p-0">
                         <div class="category-slider">
-
-                            <a href="#" class="single-cat">
-                                <div class="icon">
-                                    <img src="{% static 'images/categories/car.svg' %}" alt="#">
-                                </div>
-                                <h3>Vehicle</h3>
-                                <h5 class="total">35</h5>
-                            </a>
-
+                            {% for category in categories %}
+                                <a href="#" class="single-cat">
+                                    <div class="icon">
+                                        <img src="{{ category.image.url }}" alt="#">
+                                    </div>
+                                    <h3>{{ category.title }}</h3>
+                                    <h5 class="total">{{ category.product_set.count }}</h5>
+                                </a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -41,45 +41,48 @@
             </div>
             <div class="single-head">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
-                            <div class="image">
-                                <a href="{% url 'product' %}" class="thumbnail"><img src="{% static 'images/items-grid/img1.jpg' %}" alt="#"></a>
-                                <div class="author">
-                                    <div class="author-image">
-                                        <a href="javascript:void(0)"><img src="{% static 'images/items-grid/author-1.jpg' %}" alt="#">
-                                            <span>Smith jeko</span></a>
+                    {% for product in products %}
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
+                                <div class="image">
+                                    <a href="{% url 'product' %}" class="thumbnail"><img src="{{ product.image.url }}" alt="#"></a>
+                                    <div class="author">
+                                        <div class="author-image">
+                                            <a href="javascript:void(0)"><img src="{{ product.vendor.image.url }}" alt="#">
+                                                <span>{{ product.vendor.title }}</span>
+                                            </a>
+                                        </div>
+                                        <p class="sale">For Sale</p>
                                     </div>
-                                    <p class="sale">For Sale</p>
                                 </div>
-                            </div>
-                            <div class="content">
-                                <div class="top-content">
-                                    <a href="javascript:void(0)" class="tag">Mobile Phones</a>
-                                    <h3 class="title">
-                                        <a href="item-details.html">Apple Iphone X</a>
-                                    </h3>
-                                    <p class="update-time">Last Updated: 1 hours ago</p>
-                                    <ul class="rating">
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><a href="javascript:void(0)">(35)</a></li>
-                                    </ul>
-                                    <ul class="info-list">
-                                        <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> New York, US</a></li>
-                                        <li><a href="javascript:void(0)"><i class="lni lni-timer"></i> Feb 18, 2023</a></li>
-                                    </ul>
-                                </div>
-                                <div class="bottom-content">
-                                    <p class="price">Start From: <span>$200.00</span></p>
-                                    <a href="javascript:void(0)" class="like"><i class="lni lni-heart"></i></a>
+                                <div class="content">
+                                    <div class="top-content">
+                                        <a href="javascript:void(0)" class="tag">{{ product.tag }}</a>
+                                        <h3 class="title">
+                                            <a href="{% url 'product' %}">{{ product.title }}</a>
+                                        </h3>
+                                        <p class="update-time">{{ product.category.title }}</p>
+                                        <ul class="rating">
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><a href="javascript:void(0)">(35)</a></li>
+                                        </ul>
+                                        <ul class="info-list">
+                                            <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> New York, US</a></li>
+                                            <li><a href="javascript:void(0)"><i class="lni lni-timer"></i> Feb 18, 2023</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bottom-content">
+                                        <p class="price">Start From: <span>${{ product.price }}</span> {{ product.get_percentage|floatformat:0 }}%</p>
+                                        <a href="javascript:void(0)" class="like"><i class="lni lni-heart"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
