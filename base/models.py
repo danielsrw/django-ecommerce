@@ -91,7 +91,7 @@ class Product(models.Model):
 	pid = ShortUUIDField(unique=True, max_length=20)
 
 	user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
-	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="category")
 	tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
 	vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
 	

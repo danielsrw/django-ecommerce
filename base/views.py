@@ -16,16 +16,35 @@ def about(request):
 	return render(request, 'about.html')
 
 def shop(request):
+	categories = Category.objects.all()
 	products = Product.objects.order_by("-id")
 
 	context = {
+		'categories': categories,
 		'products': products
 	}
 
 	return render(request, 'shop.html', context)
 
 def product(request):
-	return render(request, 'product.html')
+	products = Product.objects.filter(product_status="published")
+
+	context = {
+		'products': products
+	}
+
+	return render(request, 'product.html', context)
+
+def CategoryProduct(request, cid):
+	category = Category.objects.get(cid=cid)
+	products = Product.objects.filter(product_status="published", category=category)
+
+	context = {
+		'category': category,
+		'products': products
+	}
+
+	return render(request, 'categoryProduct.html', context)
 
 def faq(request):
 	return render(request, 'faq.html')

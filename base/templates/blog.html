@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'base:home' %}">Home</a></li>
                         <li>Blog</li>
                     </ul>
                 </div>
@@ -30,11 +30,11 @@
                             <!-- Single News -->
                             <div class="single-news wow fadeInUp" data-wow-delay=".2s">
                                 <div class="image">
-                                    <a href="{% url 'showBlog' %}"><img class="thumb" src="{% static 'images/blog/blog1.jpg' %}" alt="#"></a>
+                                    <a href="{% url 'base:showBlog' %}"><img class="thumb" src="{% static 'images/blog/blog1.jpg' %}" alt="#"></a>
                                 </div>
                                 <div class="content-body">
                                     <h4 class="title">
-                                        <a href="{% url 'showBlog' %}">
+                                        <a href="{% url 'base:showBlog' %}">
                                             10 Things Successful Mompreneurs Do
                                             Different
                                         </a>

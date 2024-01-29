@@ -3,11 +3,14 @@ from django.conf.urls.static import static
 from django.urls import path, include
 from . import views
 
+app_name = 'base'
+
 urlpatterns = [
     path('', views.home, name = 'home'),
     path('about/', views.about, name = 'about'),
     path('shop/', views.shop, name = 'shop'),
     path('shop/product/', views.product, name = 'product'),
+    path('category/<cid>/', views.CategoryProduct, name = 'CategoryProduct'),
     path('faq/', views.faq, name = 'faq'),
     path('blog/', views.blog, name = 'blog'),
     path('blog/single', views.showBlog, name = 'showBlog'),

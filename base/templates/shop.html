@@ -3,7 +3,7 @@
 {% block title %}Shop{% endblock %} 
 {% block content %}
 
-	<div class="breadcrumbs">
+    <div class="breadcrumbs">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'base:home' %}">Home</a></li>
                         <li>Shop</li>
                     </ul>
                 </div>
@@ -59,19 +59,17 @@
                                                 <div class="col-lg-4 col-md-6 col-12">
                                                     <div class="single-item-grid">
                                                         <div class="image">
-                                                            <a href="{% url 'product' %}"><img src="{% static 'images/items-tab/item-1.jpg' %}" alt="#"></a>
+                                                            <a href="{% url 'base:product' %}"><img src="{{ product.image.url }}" alt="#"></a>
                                                             <i class=" cross-badge lni lni-bolt"></i>
                                                             <span class="flat-badge sale">Sale</span>
                                                         </div>
                                                         <div class="content">
-                                                            <a href="javascript:void(0)" class="tag">Mobile</a>
+                                                            <a href="javascript:void(0)" class="tag">{{ product.category.title }}</a>
                                                             <h3 class="title">
-                                                                <a href="{% url 'product' %}">Apple Iphone X</a>
+                                                                <a href="{% url 'base:product' %}">{{ product.title }}</a>
                                                             </h3>
-                                                            <p class="location"><a href="javascript:void(0)"><i class="lni lni-map-marker">
-                                                                    </i>Boston</a></p>
                                                             <ul class="info">
-                                                                <li class="price">$890.00</li>
+                                                                <li class="price">${{ product.price }}</span></li>
                                                                 <li class="like">
                                                                     <a href="javascript:void(0)">
                                                                         <i class="lni lni-heart"></i>
@@ -100,39 +98,35 @@
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane fade" id="nav-list" role="tabpanel"
-                                        aria-labelledby="nav-list-tab">
+                                    <div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-12">
-                                                <!-- Start Single Item -->
-                                                <div class="single-item-grid">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-lg-5 col-md-7 col-12">
-                                                            <div class="image">
-                                                                <a href="{% url 'product' %}"><img src="{% static 'images/items-tab/item-1.jpg' %}" alt="#"></a>
-                                                                <i class=" cross-badge lni lni-bolt"></i>
-                                                                <span class="flat-badge sale">Sale</span>
+                                                {% for product in products %}
+                                                    <div class="single-item-grid">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-lg-5 col-md-7 col-12">
+                                                                <div class="image">
+                                                                    <a href="{% url 'base:product' %}"><img src="{{ product.image.url }}" alt="#"></a>
+                                                                    <i class=" cross-badge lni lni-bolt"></i>
+                                                                    <span class="flat-badge sale">Sale</span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-lg-7 col-md-5 col-12">
-                                                            <div class="content">
-                                                                <a href="javascript:void(0)" class="tag">Others</a>
-                                                                <h3 class="title">
-                                                                    <a href="{% url 'product' %}">Travel Kit</a>
-                                                                </h3>
-                                                                <p class="location"><a href="javascript:void(0)"><i
-                                                                            class="lni lni-map-marker">
-                                                                        </i>San Francisco</a></p>
-                                                                <ul class="info">
-                                                                    <li class="price">$580.00</li>
-                                                                    <li class="like"><a href="javascript:void(0)"><i
-                                                                                class="lni lni-heart"></i></a>
-                                                                    </li>
-                                                                </ul>
+                                                            <div class="col-lg-7 col-md-5 col-12">
+                                                                <div class="content">
+                                                                    <a href="javascript:void(0)" class="tag">{{ product.category.title }}</a>
+                                                                    <h3 class="title">
+                                                                        <a href="{% url 'base:product' %}">{{ product.title }}</a>
+                                                                    </h3>
+                                                                    <ul class="info">
+                                                                        <li class="price">{{ product.price }}</li>
+                                                                        <li class="like"><a href="javascript:void(0)"><i class="lni lni-heart"></i></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="row">
