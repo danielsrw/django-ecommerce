@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from base.models import Category, Product
+from base.models import *
 
 def home(request):
 	categories = Category.objects.all()
@@ -13,7 +13,13 @@ def home(request):
 	return render(request, 'index.html', context)
 
 def about(request):
-	return render(request, 'about.html')
+	categories = Category.objects.all()
+
+	context = {
+		'categories': categories
+	}
+
+	return render(request, 'about.html', context)
 
 def shop(request):
 	categories = Category.objects.all()
@@ -47,22 +53,64 @@ def CategoryProduct(request, cid):
 	return render(request, 'categoryProduct.html', context)
 
 def faq(request):
-	return render(request, 'faq.html')
+	categories = Category.objects.all()
+
+	context = {
+		'categories': categories
+	}
+
+	return render(request, 'faq.html', context)
 
 def blog(request):
-	return render(request, 'blog.html')
+	categories = Category.objects.all()
+
+	context = {
+		'categories': categories
+	}
+
+	return render(request, 'blog.html', context)
 
 def showBlog(request):
-	return render(request, 'blog-show.html')
+	categories = Category.objects.all()
+
+	context = {
+		'categories': categories
+	}
+
+	return render(request, 'blog-show.html', context)
 
 def contact(request):
-	return render(request, 'contact.html')
+	categories = Category.objects.all()
+
+	context = {
+		'categories': categories
+	}
+
+	return render(request, 'contact.html', context)
 
 def userDashboard(request):
-	return render(request, 'profile/dashboard.html')
+	categories = Category.objects.all()
+
+	context = {
+		'categories': categories
+	}
+
+	return render(request, 'profile/dashboard.html', context)
 
 def userEditProfile(request):
-	return render(request, 'profile/edit-profile.html')
+	categories = Category.objects.all()
+
+	context = {
+		'categories': categories
+	}
+
+	return render(request, 'profile/edit-profile.html', context)
 
 def termsAndConditions(request):
-	return render(request, 'terms-and-conditions.html')
+	categories = Category.objects.all()
+
+	context = {
+		'categories': categories
+	}
+
+	return render(request, 'terms-and-conditions.html', context)

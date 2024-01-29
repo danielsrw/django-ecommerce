@@ -12,20 +12,20 @@
         <div class="dashboard-menu">
             <ul>
                 <li>
-                    <a class="" href="{% url 'userDashboard' %}">
+                    <a class="" href="{% url 'base:userDashboard' %}">
                         <i class="lni lni-dashboard"></i>
                         Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'userEditProfile' %}">
+                    <a href="{% url 'base:userEditProfile' %}">
                         <i class="lni lni-dashboard"></i>
                         Edit Profile
                     </a>
                 </li>
             </ul>
             <div class="button">
-                <a class="btn" href="{% url 'userauths:logout' %}">Logout</a>
+                <a class="btn" href="{% url 'base:userauths:logout' %}">Logout</a>
             </div>
         </div>
     </div>
