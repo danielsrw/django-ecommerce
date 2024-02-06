@@ -7,17 +7,22 @@ app_name = 'base'
 
 urlpatterns = [
     path('', views.home, name = 'home'),
-    path('about/', views.about, name = 'about'),
+
     path('shop/', views.shop, name = 'shop'),
     path('shop/product/', views.product, name = 'product'),
     path('category/<cid>/', views.CategoryProduct, name = 'CategoryProduct'),
+
+    path('about/', views.about, name = 'about'),
     path('faq/', views.faq, name = 'faq'),
     path('blog/', views.blog, name = 'blog'),
     path('blog/single', views.showBlog, name = 'showBlog'),
     path('contact/', views.contact, name = 'contact'),
+
     path('dashboard/', views.userDashboard, name = 'userDashboard'),
     path('profile-edit/', views.userEditProfile, name = 'userEditProfile'),
     path('terms-and-conditions/', views.termsAndConditions, name = 'termsAndConditions'),
+
+    path('vendors/', views.vendors, name = 'vendors'),
 
     path('user/', include('userauths.urls')),
 ]

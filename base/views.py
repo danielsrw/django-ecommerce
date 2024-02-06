@@ -114,3 +114,12 @@ def termsAndConditions(request):
 	}
 
 	return render(request, 'terms-and-conditions.html', context)
+
+def vendors(request):
+	vendors = Vendor.objects.all()
+
+	context = {
+		'vendors': vendors
+	}
+
+	return render(request, 'vendors.html', context)
