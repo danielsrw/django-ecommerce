@@ -22,16 +22,19 @@
                                     <a href="{% url 'base:home' %}" aria-label="Toggle navigation">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{% url 'base:about' %}" class="active" aria-label="Toggle navigation">About Us</a>
+                                    <a href="{% url 'base:about' %}" aria-label="Toggle navigation">About Us</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{% url 'base:shop' %}" aria-label="Toggle navigation">Shop</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{% url 'base:vendors' %}" aria-label="Toggle navigation">Vendors</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Categories</a>
                                     <ul class="sub-menu collapse" id="submenu-1-3">
                                         {% for category in categories %}
-                                            <li class="nav-item"><a href="#">{{ category.title }}</a></li>
+                                            <li class="nav-item"><a href="{% url 'base:CategoryProduct' category.cid %}">{{ category.title }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </li>

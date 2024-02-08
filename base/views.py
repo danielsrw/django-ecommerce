@@ -122,4 +122,15 @@ def vendors(request):
 		'vendors': vendors
 	}
 
-	return render(request, 'vendors.html', context)
+	return render(request, 'vendors/index.html', context)
+
+def vendorView(request, vid):
+	vendor = Vendor.objects.get(vid=vid)
+	products = Product.objects.filter(vendor=vendor, product_status="published")
+
+	context = {
+		'vendor': vendor,
+		'products': products,
+	}
+
+	return render(request, 'vendors/show.html', context)

@@ -23,6 +23,7 @@ urlpatterns = [
     path('terms-and-conditions/', views.termsAndConditions, name = 'termsAndConditions'),
 
     path('vendors/', views.vendors, name = 'vendors'),
+    path('vendors/<vid>', views.vendorView, name = 'vendorView'),
 
     path('user/', include('userauths.urls')),
 ]
