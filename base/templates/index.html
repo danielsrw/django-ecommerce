@@ -45,7 +45,7 @@
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
                                 <div class="image">
-                                    <a href="{% url 'base:product' %}" class="thumbnail"><img src="{{ product.image.url }}" alt="#"></a>
+                                    <a href="{% url 'base:product' product.pid %}" class="thumbnail"><img src="{{ product.image.url }}" alt="#"></a>
                                     <div class="author">
                                         <div class="author-image">
                                             <a href="javascript:void(0)"><img src="{{ product.vendor.image.url }}" alt="#">
@@ -59,7 +59,7 @@
                                     <div class="top-content">
                                         <a href="javascript:void(0)" class="tag">{{ product.tag }}</a>
                                         <h3 class="title">
-                                            <a href="{% url 'base:product' %}">{{ product.title }}</a>
+                                            <a href="{% url 'base:product' product.pid %}">{{ product.title }}</a>
                                         </h3>
                                         <p class="update-time">{{ product.category.title }}</p>
                                         <ul class="rating">

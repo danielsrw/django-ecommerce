@@ -1,6 +1,6 @@
 {% extends 'layouts/app.html' %}
 {% load static %}
-{% block title %}Product{% endblock %} 
+{% block title %}{{ product.title }}{% endblock %} 
 {% block content %}
 
 	<section class="item-details section">
@@ -11,44 +11,71 @@
                         <div class="product-images">
                             <main id="gallery">
                                 <div class="main-img">
-                                    <img src="{% static 'images/item-details/image1.jpg' %}" id="current" alt="#">
+                                    <img src="{{ product.image.url }}" id="current" alt="#">
                                 </div>
                                 <div class="images">
-                                    <img src="{% static 'images/item-details/image1.jpg' %}" class="img" alt="#">
-                                    <img src="{% static 'images/item-details/image2.jpg' %}" class="img" alt="#">
-                                    <img src="{% static 'images/item-details/image3.jpg' %}" class="img" alt="#">
-                                    <img src="{% static 'images/item-details/image4.jpg' %}" class="img" alt="#">
-                                    <img src="{% static 'images/item-details/image5.jpg' %}" class="img" alt="#">
+                                    <img src="{{ product.image.url }}" id="current" alt="#">
+                                    {% for p_image in p_images %}
+                                        <img src="{{ p_image.images.url }}" class="img" alt="#">
+                                    {% endfor %}
                                 </div>
                             </main>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-info">
-                            <h2 class="title">MacBook Pro 13-inch</h2>
-                            <p class="location"><i class="lni lni-map-marker"></i><a href="javascript:void(0)">New York, USA</a></p>
-                            <h3 class="price">$999</h3>
+                            <h2 class="title">{{ product.title }}</h2>
+                            <p class="location">
+                                <i class="lni lni-map-marker"></i>
+                                <a href="javascript:void(0)">Kigali, Rwanda</a>
+                            </p>
+                            <h3 class="price">${{ product.price }}</h3>
+                            <div class="login-button mt-3">
+                                <ul class="d-flex justify-content-between">
+                                    <li>
+                                        <div class="input-group mb-3">
+                                            <select class="custom-select rounded-left" style="outline: none;">
+                                                <option selected>Choose...</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <label class="input-group-text text-white" style="background: #5830E0;">Qty</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="button header-button">
+                                        <a href="#" class="btn button header-button text-white">
+                                            Add to cart
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                             <div class="list-info">
                                 <h4>Informations</h4>
                                 <ul>
-                                    <li><span>Condition:</span> New</li>
-                                    <li><span>Brand:</span> Apple</li>
-                                    <li><span>Model:</span> Mackbook Pro</li>
+                                    <li><span>Condition:</span> {{ product.condition }}</li>
+                                    <li><span>Brand:</span> {{ product.brand }}</li>
+                                    <li><span>Model:</span> {{ product.model }}</li>
                                 </ul>
                             </div>
                             <div class="contact-info">
                                 <ul>
                                     <li>
-                                        <a href="tel:+002562352589" class="call">
-                                            <i class="lni lni-phone-set"></i>
-                                            +00 256 235 2589
-                                            <span>Call & Get more info</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:example@gmail.com" class="mail">
-                                            <i class="lni lni-envelope"></i>
-                                        </a>
+                                        {% if address.status == True %}
+                                            <a href="#" class="call">
+                                                <i class="lni lni-checkmark-circle"></i>
+                                                Vendor is
+                                                <span>Verified</span>
+                                            </a>
+                                        {% else %}
+                                            <a href="#" class="call">
+                                                <i class="lni lni-cross-circle"></i>
+                                                Vendor is
+                                                <span>Not Verified</span>
+                                            </a>
+                                        {% endif %}
                                     </li>
                                 </ul>
                             </div>
@@ -73,36 +100,23 @@
                         <div class="single-block description">
                             <h3>Description</h3>
                             <p>
-                                There are many variations of passages of Lorem Ipsum available, but the majority have
-                                suffered alteration in some form, by injected humour, or randomised words which don't
-                                look even slightly believable.
+                                {{ product.description }}
                             </p>
                             <ul>
-                                <li>Model: Apple MacBook Pro 13.3-Inch MYDA2</li>
-                                <li>Apple M1 chip with 8-core CPU and 8-core GPU</li>
-                                <li>8GB RAM</li>
-                                <li>256GB SSD</li>
-                                <li>13.3-inch 2560x1600 LED-backlit Retina Display</li>
+                                <li>
+                                    {{ product.specifications }}
+                                </li>
                             </ul>
-                            <p>The generated Lorem Ipsum is therefore always free from repetition, injected humour, or
-                                non-characteristic words etc.</p>
                         </div>
-                        <!-- End Single Block -->
-                        <!-- Start Single Block -->
                         <div class="single-block tags">
-                            <h3>Tags</h3>
+                            <h3>Return & Warranty</h3>
                             <ul>
-                                <li><a href="javascript:void(0)">Bike</a></li>
-                                <li><a href="javascript:void(0)">Services</a></li>
-                                <li><a href="javascript:void(0)">Brand</a></li>
-                                <li><a href="javascript:void(0)">Popular</a></li>
+                                <li>Days to Return: <a href="#">{{ product.vendor.days_return }} days</a></li><br>
+                                <li>Warranty Period: <a href="#">{{ product.vendor.warranty_period }} months</a></li><br>
                             </ul>
                         </div>
-                        <!-- End Single Block -->
-                        <!-- Start Single Block -->
                         <div class="single-block comments">
                             <h3>Comments</h3>
-                            <!-- Start Single Comment -->
                             <div class="single-comment">
                                 <img src="{% static 'images/testimonial/testi2.jpg' %}" alt="#">
                                 <div class="content">
@@ -156,18 +170,39 @@
                         <div class="item-details-sidebar">
                             <!-- Start Single Block -->
                             <div class="single-block author">
-                                <h3>Author</h3>
+                                <h3>Vendor</h3>
                                 <div class="content">
-                                    <img src="{% static 'images/testimonial/testi3.jpg' %}" alt="#">
-                                    <h4>Miliya Jessy</h4>
-                                    <span>Member Since May 15,2023</span>
-                                    <a href="javascript:void(0)" class="see-all">See All Ads</a>
+                                    <img src="{{ product.vendor.image.url }}" alt="#">
+                                    <h4>{{ product.vendor.title }}</h4>
+                                    <span>Member Since {{ product.vendor.date|date:"Y" }}</span>
+                                    <a href="{% url 'base:vendorView' product.vendor.vid %}" class="see-all">See All Products</a>
                                 </div>
                             </div>
-                            <!-- End Single Block -->
-                            <!-- Start Single Block -->
+                            <div class="single-block">
+                                <span style="text-transform: uppercase;" class="mb-4">
+                                    <i class="lni lni-ship"></i>
+                                    Rating 
+                                    <strong style="color: #5830E0">
+                                        {{ product.vendor.authentic_rating }}%
+                                    </strong>
+                                </span> <br>
+                                <span style="text-transform: uppercase;" class="mb-4">
+                                    <i class="lni lni-ship"></i>
+                                    Ship on time 
+                                    <strong style="color: #5830E0">
+                                        {{ product.vendor.shipping_on_time }}%
+                                    </strong>
+                                </span> <br>
+                                <span style="text-transform: uppercase;">
+                                    <i class="lni lni-envelope"></i>
+                                    Chat response 
+                                    <strong style="color: #5830E0">
+                                        {{ product.vendor.chat_resp_time }}%
+                                    </strong>
+                                </span>
+                            </div>
                             <div class="single-block contant-seller comment-form ">
-                                <h3>Contact Seller</h3>
+                                <h3>Contact Vendor</h3>
                                 <form action="#" method="POST">
                                     <div class="row">
                                         <div class="col-12">
@@ -231,5 +266,85 @@
             </div>
         </div>
     </section>
+
+    <section class="items-grid section custom-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Related Products</h2>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="single-head">
+                <div class="row">
+                    {% for product in products %}
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
+                                <div class="image">
+                                    <a href="{% url 'base:product' product.pid %}" class="thumbnail"><img src="{{ product.image.url }}" alt="#"></a>
+                                    <div class="author">
+                                        <div class="author-image">
+                                            <a href="javascript:void(0)"><img src="{{ product.vendor.image.url }}" alt="#">
+                                                <span>{{ product.vendor.title }}</span>
+                                            </a>
+                                        </div>
+                                        <p class="sale">For Sale</p>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <div class="top-content">
+                                        <a href="javascript:void(0)" class="tag">{{ product.tag }}</a>
+                                        <h3 class="title">
+                                            <a href="{% url 'base:product' product.pid %}">{{ product.title }}</a>
+                                        </h3>
+                                        <p class="update-time">{{ product.category.title }}</p>
+                                        <ul class="rating">
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><a href="javascript:void(0)">(35)</a></li>
+                                        </ul>
+                                        <ul class="info-list">
+                                            <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> New York, US</a></li>
+                                            <li><a href="javascript:void(0)"><i class="lni lni-timer"></i> Feb 18, 2023</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bottom-content">
+                                        <p class="price">Start From: <span>${{ product.price }}</span> {{ product.get_percentage|floatformat:0 }}%</p>
+                                        <a href="javascript:void(0)" class="like"><i class="lni lni-heart"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        const current = document.getElementById("current");
+        const opacity = 0.6;
+        const imgs = document.querySelectorAll(".img");
+        imgs.forEach(img => {
+            img.addEventListener("click", (e) => {
+                //reset opacity
+                imgs.forEach(img => {
+                    img.style.opacity = 1;
+                });
+                current.src = e.target.src;
+                //adding class 
+                //current.classList.add("fade-in");
+                //opacity
+                e.target.style.opacity = opacity;
+            });
+        });
+    </script>
 
 {% endblock content %}

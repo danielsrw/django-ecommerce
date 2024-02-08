@@ -59,14 +59,14 @@
                                                 <div class="col-lg-4 col-md-6 col-12">
                                                     <div class="single-item-grid">
                                                         <div class="image">
-                                                            <a href="{% url 'base:product' %}"><img src="{{ product.image.url }}" alt="#"></a>
+                                                            <a href="{% url 'base:product' product.pid %}"><img src="{{ product.image.url }}" alt="#"></a>
                                                             <i class=" cross-badge lni lni-bolt"></i>
                                                             <span class="flat-badge sale">Sale</span>
                                                         </div>
                                                         <div class="content">
                                                             <a href="javascript:void(0)" class="tag">{{ product.category.title }}</a>
                                                             <h3 class="title">
-                                                                <a href="{% url 'base:product' %}">{{ product.title }}</a>
+                                                                <a href="{% url 'base:product' product.pid %}">{{ product.title }}</a>
                                                             </h3>
                                                             <ul class="info">
                                                                 <li class="price">${{ product.price }}</span></li>
@@ -106,7 +106,7 @@
                                                         <div class="row align-items-center">
                                                             <div class="col-lg-5 col-md-7 col-12">
                                                                 <div class="image">
-                                                                    <a href="{% url 'base:product' %}"><img src="{{ product.image.url }}" alt="#"></a>
+                                                                    <a href="{% url 'base:product' product.pid %}"><img src="{{ product.image.url }}" alt="#"></a>
                                                                     <i class=" cross-badge lni lni-bolt"></i>
                                                                     <span class="flat-badge sale">Sale</span>
                                                                 </div>
@@ -115,7 +115,7 @@
                                                                 <div class="content">
                                                                     <a href="javascript:void(0)" class="tag">{{ product.category.title }}</a>
                                                                     <h3 class="title">
-                                                                        <a href="{% url 'base:product' %}">{{ product.title }}</a>
+                                                                        <a href="{% url 'base:product' product.pid %}">{{ product.title }}</a>
                                                                     </h3>
                                                                     <ul class="info">
                                                                         <li class="price">{{ product.price }}</li>

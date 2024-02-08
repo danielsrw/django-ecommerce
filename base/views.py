@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from base.models import *
 
 def home(request):
@@ -32,14 +32,21 @@ def shop(request):
 
 	return render(request, 'shop.html', context)
 
-def product(request):
-	products = Product.objects.filter(product_status="published")
+def product(request, pid):
+    product = Product.objects.get(pid=pid)
+    products = Product.objects.all()
+    # product = Product.objects.get_object_or_404(pid=pid)
 
-	context = {
-		'products': products
-	}
+    # Access related ProductImages using the reverse relationship
+    p_images = product.p_images.all()
 
-	return render(request, 'product.html', context)
+    context = {
+        'product': product,
+        'products': products,
+        'p_images': p_images  # Renamed p_image to p_images for clarity
+    }
+
+    return render(request, 'product.html', context)
 
 def CategoryProduct(request, cid):
 	category = Category.objects.get(cid=cid)
