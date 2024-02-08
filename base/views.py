@@ -34,16 +34,13 @@ def shop(request):
 
 def product(request, pid):
     product = Product.objects.get(pid=pid)
-    products = Product.objects.all()
-    # product = Product.objects.get_object_or_404(pid=pid)
-
-    # Access related ProductImages using the reverse relationship
+    products = Product.objects.filter(category=product.category).exclude(pid=pid)[:4]
     p_images = product.p_images.all()
 
     context = {
         'product': product,
         'products': products,
-        'p_images': p_images  # Renamed p_image to p_images for clarity
+        'p_images': p_images
     }
 
     return render(request, 'product.html', context)

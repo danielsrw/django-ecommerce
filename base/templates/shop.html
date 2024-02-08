@@ -60,8 +60,8 @@
                                                     <div class="single-item-grid">
                                                         <div class="image">
                                                             <a href="{% url 'base:product' product.pid %}"><img src="{{ product.image.url }}" alt="#"></a>
-                                                            <i class=" cross-badge lni lni-bolt"></i>
-                                                            <span class="flat-badge sale">Sale</span>
+                                                            <!-- <i class=" cross-badge lni lni-bolt"></i> -->
+                                                            <span class="flat-badge sale">{{ product.get_percentage|floatformat:0 }}%</span>
                                                         </div>
                                                         <div class="content">
                                                             <a href="javascript:void(0)" class="tag">{{ product.category.title }}</a>

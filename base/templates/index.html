@@ -52,7 +52,7 @@
                                                 <span>{{ product.vendor.title }}</span>
                                             </a>
                                         </div>
-                                        <p class="sale">For Sale</p>
+                                        <p class="sale">{{ product.get_percentage|floatformat:0 }}%</p>
                                     </div>
                                 </div>
                                 <div class="content">
