@@ -1,6 +1,6 @@
 {% extends 'layouts/app.html' %}
 {% load static %}
-{% block title %}{{ category.title }}{% endblock %} 
+{% block title %}{{ tag.name }}{% endblock %} 
 {% block content %}
 
     <div class="breadcrumbs">
@@ -8,14 +8,14 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">{{ category.title }} ({{ category.category.count }})</h1>
+                        <h1 class="page-title">#{{ tag.name }} ({{ products.count }})</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="{% url 'base:home' %}">Home</a></li>
                         <li><a href="{% url 'base:shop' %}">Shop</a></li>
-                        <li>{{ category.title }}</li>
+                        <li>#{{ tag.name }}</li>
                     </ul>
                 </div>
             </div>
@@ -42,10 +42,10 @@
                                                         <div class="image">
                                                             <a href="{% url 'base:product' product.pid %}"><img src="{{ product.image.url }}" alt="#"></a>
                                                             <i class=" cross-badge lni lni-bolt"></i>
-                                                            <span class="flat-badge sale">{{ product.get_percentage|floatformat:0 }}%</span>
+                                                            <span class="flat-badge sale">Sale</span>
                                                         </div>
                                                         <div class="content">
-                                                            <a href="javascript:void(0)" class="tag">{{ product.category.title }}</a>
+                                                            <a href="javascript:void(0)" class="tag">{{ product.tag.name }}</a>
                                                             <h3 class="title">
                                                                 <a href="{% url 'base:product' product.pid %}">{{ product.title }}</a>
                                                             </h3>
@@ -94,7 +94,7 @@
                                                             </div>
                                                             <div class="col-lg-7 col-md-5 col-12">
                                                                 <div class="content">
-                                                                    <a href="javascript:void(0)" class="tag">{{ product.category.title }}</a>
+                                                                    <a href="javascript:void(0)" class="tag">{{ product.tag.name }}</a>
                                                                     <h3 class="title">
                                                                         <a href="{% url 'base:product' product.pid %}">{{ product.title }}</a>
                                                                     </h3>

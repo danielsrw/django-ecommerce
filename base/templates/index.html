@@ -12,7 +12,7 @@
                     <div class="col-12 p-0">
                         <div class="category-slider">
                             {% for category in categories %}
-                                <a href="{% url 'base:CategoryProduct' category.cid %}" class="single-cat">
+                                <a href="{% url 'base:categoryProduct' category.cid %}" class="single-cat">
                                     <div class="icon">
                                         <img src="{{ category.image.url }}" alt="#">
                                     </div>

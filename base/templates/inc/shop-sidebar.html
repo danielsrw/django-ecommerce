@@ -17,7 +17,7 @@
             <ul class="list">
                 {% for category in categories %}
                     <li>
-                        <a href="{% url 'base:CategoryProduct' category.cid %}">
+                        <a href="{% url 'base:categoryProduct' category.cid %}">
                             <img src="{{ category.image.url }}" style="width: 20px;">
                             {{ category.title }}<span>{{ category.category.count }}</span>
                         </a>

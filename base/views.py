@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from base.models import *
+from taggit.models import Tag
 
 def home(request):
 	categories = Category.objects.all()
@@ -45,7 +46,7 @@ def product(request, pid):
 
     return render(request, 'product.html', context)
 
-def CategoryProduct(request, cid):
+def categoryProduct(request, cid):
 	category = Category.objects.get(cid=cid)
 	products = Product.objects.filter(product_status="published", category=category)
 
@@ -55,6 +56,22 @@ def CategoryProduct(request, cid):
 	}
 
 	return render(request, 'categoryProduct.html', context)
+
+def tagList(request, tag_slug=None):
+	products = Product.objects.filter(product_status="published").order_by("-id")
+
+	tag = None
+
+	if tag_slug:
+		tag = get_object_or_404(Tag, slug=tag_slug)
+		products = products.filter(tags__in=[tag])
+
+	context = {
+		'products': products,
+		'tag': tag
+	}
+
+	return render(request, 'tag.html', context)
 
 def faq(request):
 	categories = Category.objects.all()

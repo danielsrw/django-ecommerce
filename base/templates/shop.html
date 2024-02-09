@@ -64,7 +64,7 @@
                                                             <span class="flat-badge sale">{{ product.get_percentage|floatformat:0 }}%</span>
                                                         </div>
                                                         <div class="content">
-                                                            <a href="javascript:void(0)" class="tag">{{ product.category.title }}</a>
+                                                            <a href="{% url 'base:categoryProduct' product.category.cid %}" class="tag">{{ product.category.title }}</a>
                                                             <h3 class="title">
                                                                 <a href="{% url 'base:product' product.pid %}">{{ product.title }}</a>
                                                             </h3>

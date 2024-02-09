@@ -3,6 +3,7 @@ from django.db import models
 from shortuuidfield import ShortUUIDField
 from django.utils.html import mark_safe
 from userauths.models import CustomUser
+from taggit.managers import TaggableManager
 
 STATUS_CHOICES = (
 	("process", "Processing"),
@@ -45,18 +46,13 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 
     def category_image(self):
-        # Adjust this part if you want to display the SVG differently
-        return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
-
-    def __str__(self):
-        return self.title
-
-class Tag(models.Model):
-    tid = ShortUUIDField(unique=True, max_length=20)
-    title = models.CharField(max_length=100, default="Tag Name")
-
-    class Meta:
-        verbose_name_plural = "Tags"
+        if self.image:
+            # Get the content type of the uploaded file
+            content_type = self.image.content_type
+            # Adjust this part if you want to display the content type differently
+            return mark_safe('<p>Content Type: %s</p><img src="%s" width="50" height="50" />' % (content_type, self.image.url))
+        else:
+            return "No image"
 
     def __str__(self):
         return self.title
@@ -93,7 +89,6 @@ class Product(models.Model):
 
 	user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
 	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="category")
-	tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
 	vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True, related_name="product")
 	
 	title = models.CharField(max_length=100, default="Product Title")
@@ -107,6 +102,8 @@ class Product(models.Model):
 	condition = models.CharField(max_length=100, default="Second Hand", null=True, blank=True)
 	brand = models.CharField(max_length=100, default="Brand Name", null=True, blank=True)
 	model = models.CharField(max_length=100, default="Model Name", null=True, blank=True)
+
+	tags = TaggableManager(blank=True)
 
 	product_status = models.CharField(choices=STATUS, max_length=10, default="in_review")
 

@@ -109,6 +109,18 @@
                             </ul>
                         </div>
                         <div class="single-block tags">
+                            <h3>Tags</h3>
+                            <ul>
+                                {% for tag in product.tags.all %}
+                                    <li>
+                                        <a href="">
+                                            {{ tag.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="single-block tags">
                             <h3>Return & Warranty</h3>
                             <ul>
                                 <li>Days to Return: <a href="#">{{ product.vendor.days_return }} days</a></li><br>
@@ -130,10 +142,7 @@
                                     <a href="javascript:void(0)" class="reply"><i class="lni lni-reply"></i> Reply</a>
                                 </div>
                             </div>
-                            <!-- End Single Comment -->
                         </div>
-                        <!-- End Single Block -->
-                        <!-- Start Single Block -->
                         <div class="single-block comment-form">
                             <h3>Post a comment</h3>
                             <form action="#" method="POST">
@@ -164,11 +173,9 @@
                                 </div>
                             </form>
                         </div>
-                        <!-- End Single Block -->
                     </div>
                     <div class="col-lg-4 col-md-5 col-12">
                         <div class="item-details-sidebar">
-                            <!-- Start Single Block -->
                             <div class="single-block author">
                                 <h3>Vendor</h3>
                                 <div class="content">
@@ -231,8 +238,6 @@
                                     </div>
                                 </form>
                             </div>
-                            <!-- End Single Block -->
-                            <!-- Start Single Block -->
                             <div class="single-block ">
                                 <h3>Location</h3>
                                 <div class="mapouter">
@@ -259,7 +264,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- End Single Block -->
                         </div>
                     </div>
                 </div>
